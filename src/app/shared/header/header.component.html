@@ -1,0 +1,9 @@
+<nav class="header">
+  <a>BookStore</a>
+  <div *ngIf="isLoggedIn; else elseLoggedIn">
+    <a routerLink="/login">Logout</a>
+  </div>
+  <ng-template #elseLoggedIn>
+    <a (click)="handleLogout()">Login</a>
+  </ng-template>
+</nav>

@@ -1,0 +1,33 @@
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 1rem;
+  color: white;
+  font-weight: bold;
+  background: #19416a;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 4px #9c9b9b;
+
+  &:not(:disabled):hover {
+    text-decoration: underline;
+    cursor: pointer;
+    background: #205387;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+input {
+  margin: 0.5rem 0;
+}
+
+label {
+  font-weight: bold;
+}

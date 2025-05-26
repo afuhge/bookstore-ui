@@ -1,30 +1,53 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { LoggedInService } from '../../core/services/logged-in.service';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import {
+  faBook,
+  faBookOpen,
+  faKey,
+  faList,
+  faMoon,
+  faSun,
+} from '@fortawesome/free-solid-svg-icons';
+import { MenuItemComponent } from '../menu-item/menu-item.component';
+import { BaseBtnComponent } from '../base-btn/base-btn.component';
+import { ButtonType } from '../../core/types/button-types';
+import { LoginStore } from '../../core/stores/login.store';
+import { ThemeStore } from '../../core/stores/theme.store';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, NgIf],
+  imports: [NgIf, FaIconComponent, MenuItemComponent, BaseBtnComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  public isLoggedIn = false;
-  public loginService = inject(LoggedInService);
+  public faBook = faBookOpen;
+  public books = faBook;
+  public category = faList;
+  public login = faKey;
+  public sun = faSun;
+  public moon = faMoon;
+  public loginStore = inject(LoginStore);
+  public themeStore = inject(ThemeStore);
   public router = inject(Router);
+  protected readonly ButtonType = ButtonType;
 
-  constructor() {
-    this.loginService.isLoggedIn$
-      .pipe(takeUntilDestroyed())
-      .subscribe((value) => {
-        this.isLoggedIn = value;
-      });
+  get isLoggedIn() {
+    return this.loginStore.loginState();
+  }
+
+  get isDark() {
+    return this.themeStore.isDark();
   }
 
   public handleLogout() {
-    this.loginService.setIsLoggedOut();
+    this.loginStore.setLoginState(false);
     this.router.navigate(['/login']);
+  }
+
+  public switchTheme() {
+    // todo: create theme service
+    this.themeStore.toggleTheme();
   }
 }

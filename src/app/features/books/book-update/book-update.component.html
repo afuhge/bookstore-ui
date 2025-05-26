@@ -1,18 +1,37 @@
 <h2>Add book</h2>
-<form [formGroup]="form" (ngSubmit)="save()" class="form">
-  <label for="title">Title: </label>
-  <input id="title" type="text" formControlName="title" />
+<form (ngSubmit)="save()" [formGroup]="form" class="flex flex-col gap-4 text">
 
-  <label for="category">Category: </label>
-  <input id="category" type="text" formControlName="category" />
+  <div>
+    <label class="label " for="title">Title </label>
+    <input [ngClass]="{'error-border': isInvalid('title')}" class="input" formControlName="title" id="title"
+           type="text" />
+    <p *ngIf="isInvalid('title')" class="error-text">
+      Title is required.
+    </p>
+  </div>
 
-  <label for="pages">Pages: </label>
-  <input id="pages" type="number" formControlName="pages" />
+  <div>
+    <label class="label " for="category">Category </label>
+    <input class="input" formControlName="category" id="category"
+           type="text" />
+  </div>
 
-  <label for="spice">Spice: </label>
-  <input id="spice" type="number" formControlName="spice" />
+  <div>
+    <label class="label " for="pages">Pages </label>
+    <input [ngClass]="{'error-border': isInvalid('pages')}" class="input" formControlName="pages" id="pages"
+           type="number" />
+    <p *ngIf="isInvalid('pages')" class="error-text">
+      Pages needs to be greater than 0.
+    </p>
+  </div>
 
-  <button type="submit" class="button" [disabled]="!form.valid">Submit</button>
+  <div>
+    <label class="label " for="spice">Spice </label>
+    <input [ngClass]="{'error-border': isInvalid('spice')}" class="input " formControlName="spice" id="spice"
+           type="number" />
+    <p *ngIf="isInvalid('spice')" class="error-text">
+      Spice has to be between 0 and 5.
+    </p>
+  </div>
+  <base-btn [disabled]="!form.valid" [fullWidth]="true" class="mt-4" text="Submit" />
 </form>
-
-<p>Form Status: {{ form.status }}</p>

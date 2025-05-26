@@ -1,9 +1,20 @@
-<nav class="header">
-  <a>BookStore</a>
-  <div *ngIf="isLoggedIn; else elseLoggedIn">
-    <a routerLink="/login">Logout</a>
+<nav class="rounded-b-3xl bg-orange-50 dark:bg-zinc-800 flex justify-between
+items-center px-8 py-4 shadow-lg">
+  <div class="flex items-center py-2">
+    <fa-icon [icon]="faBook"
+             class="text-3xl pr-4 accent-color drop-shadow-xl"></fa-icon>
+    <a class="text text-2xl">BookStore</a>
   </div>
-  <ng-template #elseLoggedIn>
-    <a (click)="handleLogout()">Login</a>
-  </ng-template>
+  <section *ngIf="isLoggedIn" class="flex gap-4 text">
+    <menu-item [icon]="books" label="Books" routeName="/bookstore/books"></menu-item>
+    <menu-item [icon]="category" label="Categories" routeName="/bookstore/categories"></menu-item>
+  </section>
+  <section *ngIf="isLoggedIn" class="flex gap-4 text">
+    @if (!isDark) {
+      <base-btn [type]="ButtonType.SECONDARY" (click)="switchTheme()" [icon]="sun" text="Light"></base-btn>
+    } @else {
+      <base-btn [type]="ButtonType.SECONDARY" (click)="switchTheme()" [icon]="moon" text="Dark"></base-btn>
+    }
+    <base-btn (click)="handleLogout()" [icon]="login" text="Logout"></base-btn>
+  </section>
 </nav>

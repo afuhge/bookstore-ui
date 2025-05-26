@@ -1,0 +1,6 @@
+<div
+  [routerLinkActive]="'menu-item-active'"
+  class="menu-item text">
+  <fa-icon [icon]="icon()"></fa-icon>
+  <a [routerLink]="routeName()">{{ label() }}</a>
+</div>

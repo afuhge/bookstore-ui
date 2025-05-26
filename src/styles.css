@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-monserrat: "Montserrat", "sans-serif";
+  --font-inter: "Inter", "sans-serif";
+  --color-primary-text-dark: text-amber-50;
+  --color-primary-text-color: text-amber-950;
+  --color-primary-bg-dark: bg-rose-700;
+  --color-primary-bg: bg-red-800;
+  --color-primary-bg-hover: bg-red-900;
+  --color-primary-bg-hover-dark: bg-rose-600;
+  --color-secondary-text: text-red-800;
+  --color-secondary-text-dark: text-rose-600;
+  --color-secondary-text-hover: ext-red-950;
+  --color-secondary-text-hover-dark: text-rose-500;
+  --color-accent: text-amber-500;
+  --color-accent-dark: text-amber-100;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+h1, h2, h3 {
+  @apply font-inter;
+}
+
+h1 {
+  @apply text-5xl mb-8 font-semibold;
+  @apply text-amber-950 dark:text-amber-50
+}
+
+h2 {
+  @apply text-4xl mb-8 font-semibold;
+  @apply text-amber-950 dark:text-amber-50
+}
+
+h3 {
+  @apply text-3xl mb-8 font-semibold;
+  @apply text-amber-950 dark:text-amber-50
+}
+
+h4 {
+  @apply text-2xl font-medium;
+  @apply text-amber-950 dark:text-amber-50
+}
+
+h5 {
+  @apply text-xl font-medium;
+  @apply text-amber-950 dark:text-amber-50
+}
+
+
+.background {
+  @apply bg-stone-50 dark:bg-zinc-900;
+}
+
+.text, p {
+  @apply font-monserrat;
+  @apply text-amber-950 dark:text-amber-50;
+}
+
+.primary-btn {
+  @apply px-4 p-2 rounded-lg  text-stone-50 dark:text-amber-50 bg-red-800 dark:bg-rose-700;
+  @apply not-disabled:hover:bg-red-900 not-disabled:dark:hover:bg-rose-600  not-disabled:hover:shadow-lg;
+  @apply transition-all duration-200 ease-in-out
+}
+
+.secondary-btn {
+  @apply text-red-800 dark:text-rose-600;
+  @apply px-4 p-2 rounded-lg border-1 border-red-800 dark:border-rose-600;
+  @apply not-disabled:hover:shadow-lg not-disabled:hover:border-red-900 not-disabled:hover:text-red-950 not-disabled:hover:dark:text-rose-500 not-disabled:hover:dark:border-rose-500;
+  @apply transition-all duration-300 ease-in-out
+}
+
+.link {
+  @apply cursor-pointer hover:text-amber-500  dark:hover:text-amber-100;
+}
+
+.accent-color {
+  @apply text-amber-500 dark:text-amber-100;
+}
+
+.menu-item-active {
+  @apply border-amber-500 dark:border-amber-100 border-b-2 ;
+}
+
+.menu-item {
+  @apply text-sm cursor-pointer flex gap-2 px-4 py-2;
+  @apply transition-all duration-300 ease-in-out hover:bg-amber-500 hover:dark:bg-amber-100 hover:text-stone-50 dark:hover:text-stone-950 hover:rounded-lg;
+}
+
+.input {
+  @apply w-full cursor-pointer p-4 bg-zinc-100 dark:bg-zinc-800 border  border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 dark:focus:ring-amber-100 focus:ring-amber-500 focus:border-amber-500 dark:focus:border-amber-100;
+  @apply dark:hover:border-amber-100 hover:border-amber-500;
+}
+
+.label {
+  @apply block mb-1 font-semibold;
+}
+
+.error-text {
+  @apply text-red-500 font-semibold py-1;
+}
+
+.error-border {
+  @apply border-red-500 border-2;
+}

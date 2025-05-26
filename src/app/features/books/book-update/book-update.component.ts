@@ -9,12 +9,13 @@ import { BookService } from '@core/services/books/book.service';
 import { IBookCreateRequestDTO } from '@core/services/books/books.interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../../../core/services/books/books.model';
+import { BaseBtnComponent } from '../../../shared/base-btn/base-btn.component';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-book-update',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BaseBtnComponent, NgIf, NgClass],
   templateUrl: './book-update.component.html',
-  styleUrl: './book-update.component.css',
 })
 export class BookUpdateComponent {
   public form = new FormGroup({
@@ -40,5 +41,10 @@ export class BookUpdateComponent {
       console.log(book);
       this.router.navigate([''], { relativeTo: this.route }).then();
     });
+  }
+
+  isInvalid(controlName: string): boolean {
+    const control = this.form.get(controlName);
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 }

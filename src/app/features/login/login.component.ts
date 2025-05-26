@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
-import { LoggedInService } from '../../core/services/logged-in.service';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseBtnComponent } from '../../shared/base-btn/base-btn.component';
+import { ButtonType } from '../../core/types/button-types';
+import { LoginStore } from '../../core/stores/login.store';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [BaseBtnComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  constructor(
-    public loginService: LoggedInService,
-    private router: Router
-  ) {}
+  ButtonType = ButtonType;
+  readonly loginStore = inject(LoginStore);
+
+  constructor(private router: Router) {}
 
   public login() {
-    this.loginService.setIsLoggedIn();
+    this.loginStore.setLoginState(true);
     this.router.navigate(['/bookstore']);
   }
 }

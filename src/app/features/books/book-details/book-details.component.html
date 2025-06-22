@@ -4,34 +4,41 @@
   <div>
     <label class="label " for="title">Title </label>
     <input [ngClass]="{'error-border': isInvalid('title')}" class="input" formControlName="title" id="title"
-           type="text" />
-    <p *ngIf="isInvalid('title')" class="error-text">
-      Title is required.
-    </p>
+      type="text" />
+    @if (isInvalid('title')) {
+      <p class="error-text">
+        Title is required.
+      </p>
+    }
   </div>
 
   <div>
     <label class="label " for="category">Category </label>
     <input class="input" formControlName="category" id="category"
-           type="text" />
+      type="text" />
   </div>
 
   <div>
     <label class="label " for="pages">Pages </label>
     <input [ngClass]="{'error-border': isInvalid('pages')}" class="input" formControlName="pages" id="pages"
-           type="number" />
-    <p *ngIf="isInvalid('pages')" class="error-text">
-      Pages needs to be greater than 0.
-    </p>
+      type="number" />
+    @if (isInvalid('pages')) {
+      <p class="error-text">
+        Pages needs to be greater than 0.
+      </p>
+    }
   </div>
 
   <div>
     <label class="label " for="spice">Spice </label>
     <input [ngClass]="{'error-border': isInvalid('spice')}" class="input " formControlName="spice" id="spice"
-           type="number" />
-    <p *ngIf="isInvalid('spice')" class="error-text">
-      Spice has to be between 0 and 5.
-    </p>
+      type="number" />
+    @if (isInvalid('spice')) {
+      <p class="error-text">
+        Spice has to be between 0 and 5.
+      </p>
+    }
   </div>
-  <base-btn [disabled]="!form.valid" [fullWidth]="true" class="mt-4" text="Submit" />
+  <base-btn (click)="save()" [disabled]="!form.valid || btnLoading()" [fullWidth]="true" [loading]="btnLoading()"
+    class="mt-4" text="Submit" />
 </form>

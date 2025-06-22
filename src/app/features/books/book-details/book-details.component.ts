@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,14 +10,15 @@ import { IBookCreateRequestDTO } from '@core/services/books/books.interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../../../core/services/books/books.model';
 import { BaseBtnComponent } from '../../../shared/base-btn/base-btn.component';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-book-update',
-  imports: [ReactiveFormsModule, BaseBtnComponent, NgIf, NgClass],
-  templateUrl: './book-update.component.html',
+  imports: [ReactiveFormsModule, BaseBtnComponent, NgClass],
+  templateUrl: './book-details.component.html',
 })
-export class BookUpdateComponent {
+export class BookDetailsComponent {
   public form = new FormGroup({
     title: new FormControl('', Validators.required),
     category: new FormControl(''),
@@ -28,8 +29,10 @@ export class BookUpdateComponent {
   public bookService: BookService = inject(BookService);
   public router: Router = inject(Router);
   public route: ActivatedRoute = inject(ActivatedRoute);
+  public btnLoading = signal(false);
 
   public save() {
+    this.btnLoading.set(true);
     const bookDto: IBookCreateRequestDTO = {
       title: this.form.value.title!,
       spice: this.form.value.spice ?? 0,
@@ -37,10 +40,17 @@ export class BookUpdateComponent {
       categoryId: this.form.value.category ?? undefined,
     };
 
-    this.bookService.createBook(bookDto).subscribe((book: Book) => {
-      console.log(book);
-      this.router.navigate([''], { relativeTo: this.route }).then();
-    });
+    this.bookService
+      .createBook(bookDto)
+      .pipe(finalize(() => this.btnLoading.set(false)))
+      .subscribe({
+        next: (book: Book) => {
+          this.router.navigate([''], { relativeTo: this.route }).then();
+        },
+        error: (err) => {
+          console.error('book creation failed:', err);
+        },
+      });
   }
 
   isInvalid(controlName: string): boolean {

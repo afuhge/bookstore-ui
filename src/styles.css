@@ -17,6 +17,15 @@
   --color-secondary-text-hover-dark: text-rose-500;
   --color-accent: text-amber-500;
   --color-accent-dark: text-amber-100;
+  --animate-fade-in: fade-in 3s ease-in-out alternate;
+  @keyframes fade-in {
+    0%, 100% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+  }
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -100,9 +109,27 @@ h5 {
 }
 
 .error-text {
-  @apply text-red-500 font-semibold py-1;
+  @apply text-red-500 font-semibold text-sm py-1;
 }
 
 .error-border {
   @apply border-red-500 border-2;
 }
+
+
+.notification-error {
+  @apply bg-red-200 text-red-600;
+}
+
+.notification-success {
+  @apply bg-green-200 text-green-600;
+}
+
+.notification-info {
+  @apply bg-blue-200 text-blue-600;
+}
+
+.notification-warning {
+  @apply bg-yellow-200 text-yellow-600;
+}
+

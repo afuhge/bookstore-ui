@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
+
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
   faBook,
@@ -18,7 +18,7 @@ import { ThemeStore } from '../../core/stores/theme.store';
 
 @Component({
   selector: 'app-header',
-  imports: [NgIf, FaIconComponent, MenuItemComponent, BaseBtnComponent],
+  imports: [FaIconComponent, MenuItemComponent, BaseBtnComponent],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {

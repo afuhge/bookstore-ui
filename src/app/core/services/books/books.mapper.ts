@@ -21,10 +21,12 @@ export class BooksMapper {
       title: bookDTO.title,
       pages: bookDTO.pages,
       spice: bookDTO.spice,
-      category: {
-        id: bookDTO.category.id,
-        name: bookDTO.category.name,
-      },
+      category: bookDTO.category
+        ? {
+            id: bookDTO.category.id,
+            name: bookDTO.category.name,
+          }
+        : null,
     } as Book;
   }
 }

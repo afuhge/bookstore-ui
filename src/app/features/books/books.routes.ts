@@ -11,15 +11,15 @@ export const BOOKS_ROUTES: Routes = [
   {
     path: 'update',
     loadComponent: () =>
-      import('./book-update/book-update.component').then(
-        (m) => m.BookUpdateComponent
+      import('./book-details/book-details.component').then(
+        (m) => m.BookDetailsComponent
       ),
   },
   {
-    path: ':id',
+    path: 'update/:id',
     loadComponent: () =>
-      import('./books-details/books-details.component').then(
-        (m) => m.BooksDetailsComponent
+      import('./book-details/book-details.component').then(
+        (m) => m.BookDetailsComponent
       ),
   }, // Default route for the books feature
 ];

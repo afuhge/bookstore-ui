@@ -10,21 +10,22 @@
     <loading height="h-20" />
   </div>
 } @else {
-  <ng-container *ngIf="books.totalEntries > 0 ; else noBooks">
+  @if (books.totalEntries > 0 ) {
     <ul>
-      <li *ngFor="let book of books.books">
-        <h3>{{ book.title }}</h3>
-        <p>Category: {{ book.category.name }}</p>
-        <p>Spice: {{ book.spice }}</p>
-        <p>Pages: {{ book.pages }}</p>
-      </li>
+      @for (book of books.books; track book) {
+        <li>
+          <h3>{{ book.title }}</h3>
+          <p>Category: {{ book.category.name }}</p>
+          <p>Spice: {{ book.spice }}</p>
+          <p>Pages: {{ book.pages }}</p>
+        </li>
+      }
     </ul>
     <h3>Total entries: {{ books.totalEntries }}</h3>
-  </ng-container>
-  <ng-template #noBooks>
+  } @else {
     <div class="flex items-center justify-center h-100">
       <empty-placeholder title="No Books available" description="Add some books to your personal bookstore."
-                         [icon]="book" />
+        [icon]="book" />
     </div>
-  </ng-template>
+  }
 }

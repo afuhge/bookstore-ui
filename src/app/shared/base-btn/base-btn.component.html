@@ -1,5 +1,11 @@
 <button [disabled]="disabled()" [ngClass]="[type(), fullWidth() ? 'w-full' : '']"
-        class="flex items-center justify-center not-disabled:cursor-pointer h-[40px] disabled:cursor-not-allowed disabled:opacity-60">
-  <fa-icon *ngIf="icon() as safeIcon" [icon]="safeIcon" class="pr-2"></fa-icon>
-  <span class="text-sm text-center">{{ text() }}</span>
+  class="flex items-center justify-center not-disabled:cursor-pointer h-[40px] disabled:cursor-not-allowed disabled:opacity-60">
+  @if (loading()) {
+    <loading [type]="LoadingTypes.DOTS" />
+  } @else {
+    @if (icon(); as safeIcon) {
+      <fa-icon [icon]="safeIcon" class="pr-2"></fa-icon>
+    }
+    <span class="text-sm text-center">{{ text() }}</span>
+  }
 </button>

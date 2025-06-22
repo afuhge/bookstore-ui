@@ -1,1 +1,17 @@
-<p>categories-details works!</p>
+<h2>Add category</h2>
+<form [formGroup]="form" class="flex flex-col gap-4 text">
+
+  <div>
+    <label class="label " for="name">Name </label>
+    <input [ngClass]="{'error-border': isInvalid('Name')}" class="input" formControlName="name" id="name"
+      type="text" />
+    @if (isInvalid('name')) {
+      <p class="error-text">
+        Name is required.
+      </p>
+    }
+  </div>
+
+  <base-btn (click)="save()" [disabled]="!form.valid || btnLoading()" [fullWidth]="true" [loading]="btnLoading()"
+    class="mt-4" text="Submit" />
+</form>

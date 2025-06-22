@@ -1,3 +1,17 @@
-<div [ngClass]="[height(), width()]" aria-busy="true"
-     class=" cursor-wait rounded-lg dark:bg-zinc-700 bg-stone-200 transform animate-pulse">
-</div>
+@if (type() === LoadingTypes.SKELETON) {
+  <div [ngClass]="[height(), width()]" aria-busy="true"
+       class=" cursor-wait rounded-lg dark:bg-zinc-700 bg-stone-200 transform animate-pulse">
+  </div>
+} @else {
+  <div class="flex items-center space-x-1" aria-busy="true">
+    <div
+      class="h-2 w-2 cursor-wait rounded-full dark:bg-zinc-100 bg-stone-200 transform animate-pulse">
+    </div>
+    <div
+      class="h-2 w-2 cursor-wait rounded-full dark:bg-zinc-100 bg-stone-200 transform animate-pulse">
+    </div>
+    <div
+      class="h-2 w-2 cursor-wait rounded-full dark:bg-zinc-100 bg-stone-200 transform animate-pulse">
+    </div>
+  </div>
+}

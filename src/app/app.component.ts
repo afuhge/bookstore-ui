@@ -4,15 +4,24 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ThemeStore } from './core/stores/theme.store';
 import { LoginStore } from './core/stores/login.store';
+import { NotificationComponent } from './shared/notification/notification.component';
+
+import { NotificationsStore } from './core/stores/notifications.store';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    NotificationComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'bookstore-ui';
+  public notificationStore = inject(NotificationsStore);
   private themeStore = inject(ThemeStore);
   private loginStore = inject(LoginStore);
   private localStorageKey = 'theme-preference';
@@ -32,6 +41,19 @@ export class AppComponent {
         'loggedIn',
         JSON.stringify(this.loginStore.loginState())
       );
+    });
+
+    let timeoutId: any;
+
+    effect(() => {
+      const items = this.notificationStore.items();
+      clearTimeout(timeoutId); // Clear any existing timeouts
+
+      if (items.length > 0) {
+        timeoutId = setTimeout(() => {
+          this.notificationStore.removeNotification();
+        }, 5000);
+      }
     });
   }
 }

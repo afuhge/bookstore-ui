@@ -1,23 +1,22 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { BookService } from '../../../core/services/books/book.service';
 import { Books } from '../../../core/services/books/books.model';
-import { NgForOf, NgIf } from '@angular/common';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmptyPlaceholderComponent } from '../../../shared/empty-placeholder/empty-placeholder.component';
 import { faBook, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BaseBtnComponent } from '../../../shared/base-btn/base-btn.component';
 import { delay } from 'rxjs';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { LoadingTypes } from '../../../core/types/loading-types';
 
 @Component({
   selector: 'app-books-overview',
   imports: [
-    NgForOf,
-    NgIf,
     EmptyPlaceholderComponent,
     BaseBtnComponent,
-    LoadingComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './books-overview.component.html',
   styleUrl: './books-overview.component.css',
 })
@@ -29,6 +28,7 @@ export class BooksOverviewComponent implements OnInit {
   public plus = faPlus;
   public book = faBook;
   public isLoading = signal(false);
+  protected readonly LoadingTypes = LoadingTypes;
 
   ngOnInit(): void {
     this.isLoading.set(true);

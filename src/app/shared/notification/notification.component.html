@@ -1,0 +1,12 @@
+<div [ngClass]="[type()]" class="w-100 rounded-lg flex items-center space-x-4 p-4">
+  @if (type() === NotificationTypes.ERROR) {
+    <fa-icon [icon]="error" />
+  } @else if (type() === NotificationTypes.INFO) {
+    <fa-icon [icon]="info" />
+  } @else if (type() === NotificationTypes.WARNING) {
+    <fa-icon [icon]="warning" />
+  } @else {
+    <fa-icon [icon]="success" />
+  }
+  <span class="truncate"> {{ message() }}</span>
+</div>

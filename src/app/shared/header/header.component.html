@@ -2,21 +2,23 @@
 items-center px-8 py-4 shadow-lg">
   <div class="flex items-center py-2">
     <fa-icon [icon]="faBook"
-    class="text-3xl pr-4 accent-color drop-shadow-xl"></fa-icon>
+             class="text-3xl pr-4 accent-color drop-shadow-xl"></fa-icon>
     <a class="text text-2xl">BookStore</a>
   </div>
   @if (isLoggedIn) {
     <section class="flex gap-4 text">
-      <menu-item [icon]="books" label="Books" routeName="/bookstore/books"></menu-item>
-      <menu-item [icon]="category" label="Categories" routeName="/bookstore/categories"></menu-item>
+      <menu-item [icon]="books" [label]="'menu.books' | translate" routeName="/bookstore/books"></menu-item>
+      <menu-item [icon]="category" [label]="'menu.category' | translate" routeName="/bookstore/categories"></menu-item>
     </section>
   }
   @if (isLoggedIn) {
     <section class="flex gap-4 text">
       @if (!isDark) {
-        <base-btn [type]="ButtonType.SECONDARY" (click)="switchTheme()" [icon]="sun" text="Light"></base-btn>
+        <base-btn [type]="ButtonType.SECONDARY" (click)="switchTheme()" [icon]="sun"
+                  [text]="'theme.light' | translate"></base-btn>
       } @else {
-        <base-btn [type]="ButtonType.SECONDARY" (click)="switchTheme()" [icon]="moon" text="Dark"></base-btn>
+        <base-btn [type]="ButtonType.SECONDARY" (click)="switchTheme()" [icon]="moon"
+                  [text]="'theme.dark' | translate"></base-btn>
       }
       <base-btn (click)="handleLogout()" [icon]="login" text="Logout"></base-btn>
     </section>

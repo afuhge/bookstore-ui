@@ -1,31 +1,31 @@
-<h2>Categories Overview</h2>
+<h2>{{ 'category.headlines.overview' | translate }}</h2>
 <div class="flex items-center">
   <base-btn (click)="goToUpdatePage()" [icon]="plus"
-    text="Add category" />
+            [text]="'category.button.add' | translate" />
 
 </div>
 @if (isLoading()) {
   <div class="mt-8 grid grid-cols-3 gap-4">
-    @for (i of [1, 2,3,4,5,6,7,8,9]; track i) {
+    @for (i of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track i) {
       <loading height="h-8" />
     }
   </div>
 } @else {
-  @if (categories.totalEntries > 0 ) {
+  @if (categories.totalEntries > 0) {
     <ul>
       @for (category of categories.categories; track category) {
         <li>
           <h3>{{ category.name }}</h3>
-          <p>Associated books: {{ category.booksCount }}</p>
+          <p>{{ 'category.associatedBooks' | translate }}: {{ category.booksCount }}</p>
         </li>
       }
     </ul>
-    <h3>Total entries: {{ categories.totalEntries }}</h3>
+    <h3>{{ 'totalEntries' | translate }}: {{ categories.totalEntries }}</h3>
   } @else {
     <div class="flex items-center justify-center h-100">
-      <empty-placeholder title="No categories available"
-        description="Add some categories to categorize your personal bookstore."
-        [icon]="list" />
+      <empty-placeholder [title]="'category.empty.title' | translate"
+                         [description]="'category.empty.description' | translate"
+                         [icon]="list" />
     </div>
   }
 }

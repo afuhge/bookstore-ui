@@ -15,10 +15,16 @@ import { BaseBtnComponent } from '../base-btn/base-btn.component';
 import { ButtonType } from '../../core/types/button-types';
 import { LoginStore } from '../../core/stores/login.store';
 import { ThemeStore } from '../../core/stores/theme.store';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
-  imports: [FaIconComponent, MenuItemComponent, BaseBtnComponent],
+  imports: [
+    FaIconComponent,
+    MenuItemComponent,
+    BaseBtnComponent,
+    TranslatePipe,
+  ],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {

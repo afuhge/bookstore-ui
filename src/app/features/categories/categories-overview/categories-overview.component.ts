@@ -5,22 +5,24 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { faList, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { delay } from 'rxjs';
+import { delay, finalize } from 'rxjs';
 import { CategoryService } from '../../../core/services/categories/category-service.service';
 import { Categories } from '../../../core/services/categories/categories.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories-overview',
   imports: [
     BaseBtnComponent,
     EmptyPlaceholderComponent,
-    LoadingComponent
-],
+    LoadingComponent,
+    TranslatePipe,
+  ],
   templateUrl: './categories-overview.component.html',
 })
 export class CategoriesOverviewComponent implements OnInit {
   public categoryService = inject(CategoryService);
-  public categories!: Categories;
+  public categories: Categories = new Categories();
   public router: Router = inject(Router);
   public route: ActivatedRoute = inject(ActivatedRoute);
   public plus = faPlus;
@@ -32,9 +34,9 @@ export class CategoriesOverviewComponent implements OnInit {
     this.categoryService
       .getCategories()
       .pipe(delay(400))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe((categories: Categories) => {
         this.categories = categories;
-        this.isLoading.set(false);
       });
   }
 

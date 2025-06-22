@@ -1,17 +1,17 @@
-<h2>Add category</h2>
+<h2>{{ 'category.headlines.add' | translate }}</h2>
 <form [formGroup]="form" class="flex flex-col gap-4 text">
 
   <div>
-    <label class="label " for="name">Name </label>
+    <label class="label " for="name">{{ 'category.name' | translate }} </label>
     <input [ngClass]="{'error-border': isInvalid('Name')}" class="input" formControlName="name" id="name"
-      type="text" />
+           type="text" />
     @if (isInvalid('name')) {
       <p class="error-text">
-        Name is required.
+        {{ 'category.invalid.name' | translate }}.
       </p>
     }
   </div>
 
   <base-btn (click)="save()" [disabled]="!form.valid || btnLoading()" [fullWidth]="true" [loading]="btnLoading()"
-    class="mt-4" text="Submit" />
+            [text]="'category.button.submit' | translate" class="mt-4" />
 </form>

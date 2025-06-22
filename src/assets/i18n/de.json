@@ -1,8 +1,63 @@
 {
+  "login": "Login",
+  "Logout": "Ausloggen",
+  "imprint": "Impressum",
+  "rights": "Alle Rechte vorbehalten",
+  "theme": {
+    "dark": "Dunkel",
+    "light": "Hell"
+  },
   "books": {
+    "headlines": {
+      "add": "Buch hinzufügen",
+      "overview": "Bücher Übersicht"
+    },
+    "invalid": {
+      "title": "Titel ist verpflichtend",
+      "pages": "Seiten müssen größer sein als 0",
+      "spice": "Spice muss zwischen 0 und 5 sein"
+    },
+    "empty": {
+      "title": "Keine Bücher verfügbar",
+      "description": "Füge ein paar Bücher zu deinem persönlichen Buchladen hinzu"
+    },
+    "button": {
+      "add": "Buch hinzufügen",
+      "submit": "Senden"
+    },
     "badge": {
       "all": "Alle",
-      "toRead": "Zu lesen"
-    }
+      "toRead": "Zu lesen",
+      "alreadyRead": "Bereits gelesen"
+    },
+    "title": "Titel",
+    "category": "Kategorie",
+    "pages": "Seiten",
+    "spice": "Spice"
+  },
+  "category": {
+    "headlines": {
+      "add": "Kategorie hinzufügen",
+      "overview": "Kategorien Übersicht"
+    },
+    "invalid": {
+      "name": "Name ist Pflichtfeld"
+    },
+    "empty": {
+      "title": "Keine Kategorien vorhanden",
+      "description": "Füge einige Kategorien hinzu, um deinen persönlichen Buchladen zu kategorisieren"
+    },
+    "button": {
+      "add": "Kategorie hinzufügen",
+      "submit": "Senden"
+    },
+    "name": "Name"
+  },
+  "notifications": {
+    "category.created": "Kategorie erfolgreich hinzugefügt"
+  },
+  "menu": {
+    "books": "Bücher",
+    "category": "Kategorien"
   }
 }

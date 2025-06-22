@@ -14,10 +14,11 @@ import { Category } from '../../../core/services/categories/categories.model';
 import { finalize } from 'rxjs';
 import { NotificationsStore } from '../../../core/stores/notifications.store';
 import { NotificationTypes } from '../../../core/types/notification-types';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories-details',
-  imports: [BaseBtnComponent, ReactiveFormsModule, NgClass],
+  imports: [BaseBtnComponent, ReactiveFormsModule, NgClass, TranslatePipe],
   templateUrl: './categories-details.component.html',
 })
 export class CategoriesDetailsComponent {
@@ -48,7 +49,7 @@ export class CategoriesDetailsComponent {
       .subscribe({
         next: (category: Category) => {
           console.log(category);
-          
+
           this.btnLoading.set(true);
           this.router.navigate(['../'], { relativeTo: this.route }).then();
         },

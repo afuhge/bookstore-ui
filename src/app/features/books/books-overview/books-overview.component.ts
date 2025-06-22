@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmptyPlaceholderComponent } from '../../../shared/empty-placeholder/empty-placeholder.component';
 import { faBook, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BaseBtnComponent } from '../../../shared/base-btn/base-btn.component';
-import { delay } from 'rxjs';
+import { delay, finalize } from 'rxjs';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { LoadingTypes } from '../../../core/types/loading-types';
 import { BadgeComponent } from '../../../shared/badge/badge.component';
@@ -26,7 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class BooksOverviewComponent implements OnInit {
   public booksService = inject(BookService);
-  public books!: Books;
+  public books: Books = new Books();
   public router: Router = inject(Router);
   public route: ActivatedRoute = inject(ActivatedRoute);
   public plus = faPlus;
@@ -39,9 +39,9 @@ export class BooksOverviewComponent implements OnInit {
     this.booksService
       .getBooks()
       .pipe(delay(400))
+      .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe((books: Books) => {
         this.books = books;
-        this.isLoading.set(false);
       });
   }
 

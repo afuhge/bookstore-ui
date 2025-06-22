@@ -31,8 +31,8 @@ export class AppComponent {
 
   constructor() {
     this.translateService.addLangs(['de', 'en']);
-    this.translateService.setDefaultLang('de');
-    this.translateService.use(this.translateService.getBrowserLang() || 'en');
+    this.translateService.setDefaultLang('en');
+    this.translateService.use('de');
 
     effect(() => {
       localStorage.setItem(

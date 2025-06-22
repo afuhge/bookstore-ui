@@ -1,6 +1,7 @@
-<h2>Books Overview</h2>
+<h2>{{ 'books.headlines.overview' | translate }}</h2>
 <div class="flex justify-between items-center">
-  <base-btn (click)="goToUpdatePage()" [icon]="plus" text="Add book" />
+  <base-btn (click)="goToUpdatePage()" [icon]="plus"
+            [text]="'books.button.add' | translate" />
   <div class="space-x-2">
     <badge [active]="true"> {{ 'books.badge.all' | translate }}</badge>
     <badge> {{ 'books.badge.toRead' | translate }}</badge>
@@ -19,16 +20,16 @@
       @for (book of books.books; track book) {
         <li>
           <h3>{{ book.title }}</h3>
-          <p>Category: {{ book.category.name }}</p>
-          <p>Spice: {{ book.spice }}</p>
-          <p>Pages: {{ book.pages }}</p>
+          <p>{{ 'books.category' | translate }}: {{ book.category.name }}</p>
+          <p>{{ 'books.spice' |translate }}: {{ book.spice }}</p>
+          <p>{{ 'books.pages' | translate }}: {{ book.pages }}</p>
         </li>
       }
     </ul>
-    <h3>Total entries: {{ books.totalEntries }}</h3>
+    <h3>{{ 'totalEntries' |translate }}: {{ books.totalEntries }}</h3>
   } @else {
     <div class="flex items-center justify-center h-100">
-      <empty-placeholder title="No Books available" description="Add some books to your personal bookstore."
+      <empty-placeholder [title]="'books.empty.title' | translate" [description]="'books.empty.description' | translate"
                          [icon]="book" />
     </div>
   }

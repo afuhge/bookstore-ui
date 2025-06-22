@@ -1,44 +1,44 @@
-<h2>Add book</h2>
+<h2>{{ 'books.headlines.add' | translate }}</h2>
 <form (ngSubmit)="save()" [formGroup]="form" class="flex flex-col gap-4 text">
 
   <div>
-    <label class="label " for="title">Title </label>
+    <label class="label " for="title">{{ 'books.title' | translate }} </label>
     <input [ngClass]="{'error-border': isInvalid('title')}" class="input" formControlName="title" id="title"
-      type="text" />
+           type="text" />
     @if (isInvalid('title')) {
       <p class="error-text">
-        Title is required.
+        {{ 'books.invalid.title' | translate }}.
       </p>
     }
   </div>
 
   <div>
-    <label class="label " for="category">Category </label>
+    <label class="label " for="category">{{ 'books.category' | translate }} </label>
     <input class="input" formControlName="category" id="category"
-      type="text" />
+           type="text" />
   </div>
 
   <div>
-    <label class="label " for="pages">Pages </label>
+    <label class="label " for="pages">{{ 'books.pages' | translate }} </label>
     <input [ngClass]="{'error-border': isInvalid('pages')}" class="input" formControlName="pages" id="pages"
-      type="number" />
+           type="number" />
     @if (isInvalid('pages')) {
       <p class="error-text">
-        Pages needs to be greater than 0.
+        {{ 'books.invalid.pages' | translate }}.
       </p>
     }
   </div>
 
   <div>
-    <label class="label " for="spice">Spice </label>
+    <label class="label " for="spice">{{ 'books.spice' | translate }} </label>
     <input [ngClass]="{'error-border': isInvalid('spice')}" class="input " formControlName="spice" id="spice"
-      type="number" />
+           type="number" />
     @if (isInvalid('spice')) {
       <p class="error-text">
-        Spice has to be between 0 and 5.
+        {{ 'books.invalid.spice' | translate }}.
       </p>
     }
   </div>
   <base-btn (click)="save()" [disabled]="!form.valid || btnLoading()" [fullWidth]="true" [loading]="btnLoading()"
-    class="mt-4" text="Submit" />
+            class="mt-4" text="Submit" />
 </form>

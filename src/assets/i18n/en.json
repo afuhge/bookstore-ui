@@ -1,8 +1,63 @@
 {
+  "login": "Login",
+  "Logout": "Logout",
+  "imprint": "Imprint",
+  "rights": "All rights reserved",
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  },
   "books": {
+    "headlines": {
+      "add": "Add book",
+      "overview": "Books overview"
+    },
+    "invalid": {
+      "title": "Title is required",
+      "pages": "Pages have to be greater than 0",
+      "spice": "Spice must be between 0 and 5"
+    },
+    "empty": {
+      "title": "No books available",
+      "description": "Add some books to your personal bookstore"
+    },
+    "button": {
+      "add": "Add book",
+      "submit": "Submit"
+    },
     "badge": {
       "all": "All",
-      "toRead": "To reads"
-    }
+      "toRead": "To read",
+      "alreadyRead": "Already read"
+    },
+    "title": "Title",
+    "category": "Category",
+    "pages": "Pages",
+    "spice": "Spice"
+  },
+  "category": {
+    "headlines": {
+      "add": "Add category",
+      "overview": "Category overview"
+    },
+    "invalid": {
+      "name": "Name is required"
+    },
+    "empty": {
+      "title": "No categories available",
+      "description": "Add some categories to categorize your personal bookstore"
+    },
+    "button": {
+      "add": "Add category",
+      "submit": "Submit"
+    },
+    "name": "Name"
+  },
+  "notifications": {
+    "category.created": "Category successful created"
+  },
+  "menu": {
+    "books": "Books",
+    "category": "Categories"
   }
 }

@@ -12,10 +12,11 @@ import { Book } from '../../../core/services/books/books.model';
 import { BaseBtnComponent } from '../../../shared/base-btn/base-btn.component';
 import { NgClass } from '@angular/common';
 import { finalize } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-book-update',
-  imports: [ReactiveFormsModule, BaseBtnComponent, NgClass],
+  imports: [ReactiveFormsModule, BaseBtnComponent, NgClass, TranslatePipe],
   templateUrl: './book-details.component.html',
 })
 export class BookDetailsComponent {

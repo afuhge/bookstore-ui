@@ -7,6 +7,7 @@ import { LoginStore } from './core/stores/login.store';
 import { NotificationComponent } from './shared/notification/notification.component';
 
 import { NotificationsStore } from './core/stores/notifications.store';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,19 +15,25 @@ import { NotificationsStore } from './core/stores/notifications.store';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    NotificationComponent
-],
+    NotificationComponent,
+    TranslateModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'bookstore-ui';
   public notificationStore = inject(NotificationsStore);
+  public translateService = inject(TranslateService);
   private themeStore = inject(ThemeStore);
   private loginStore = inject(LoginStore);
   private localStorageKey = 'theme-preference';
 
   constructor() {
+    this.translateService.addLangs(['de', 'en']);
+    this.translateService.setDefaultLang('de');
+    this.translateService.use(this.translateService.getBrowserLang() || 'en');
+
     effect(() => {
       localStorage.setItem(
         this.localStorageKey,

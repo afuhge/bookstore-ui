@@ -1,7 +1,11 @@
 <h2>Books Overview</h2>
-<div class="flex items-center">
+<div class="flex justify-between items-center">
   <base-btn (click)="goToUpdatePage()" [icon]="plus" text="Add book" />
-
+  <div class="space-x-2">
+    <badge [active]="true"> {{ 'books.badge.all' | translate }}</badge>
+    <badge> {{ 'books.badge.toRead' | translate }}</badge>
+    <badge> {{ 'books.badge.alreadyRead' | translate }}</badge>
+  </div>
 </div>
 @if (isLoading()) {
   <div class="mt-8 flex flex-col gap-4">
@@ -10,7 +14,7 @@
     <loading height="h-20" />
   </div>
 } @else {
-  @if (books.totalEntries > 0 ) {
+  @if (books.totalEntries > 0) {
     <ul>
       @for (book of books.books; track book) {
         <li>
@@ -25,7 +29,7 @@
   } @else {
     <div class="flex items-center justify-center h-100">
       <empty-placeholder title="No Books available" description="Add some books to your personal bookstore."
-        [icon]="book" />
+                         [icon]="book" />
     </div>
   }
 }

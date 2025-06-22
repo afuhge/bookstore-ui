@@ -9,14 +9,18 @@ import { BaseBtnComponent } from '../../../shared/base-btn/base-btn.component';
 import { delay } from 'rxjs';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { LoadingTypes } from '../../../core/types/loading-types';
+import { BadgeComponent } from '../../../shared/badge/badge.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-books-overview',
   imports: [
     EmptyPlaceholderComponent,
     BaseBtnComponent,
-    LoadingComponent
-],
+    LoadingComponent,
+    BadgeComponent,
+    TranslatePipe,
+  ],
   templateUrl: './books-overview.component.html',
   styleUrl: './books-overview.component.css',
 })

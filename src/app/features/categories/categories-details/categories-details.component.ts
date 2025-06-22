@@ -37,16 +37,18 @@ export class CategoriesDetailsComponent {
       name: this.form.value.name!,
     };
 
+    this.notificationStore.addNotification({
+      type: NotificationTypes.SUCCESS,
+      message: 'Category successful created',
+    });
+
     this.categoryService
       .createCategory(categoryDTO)
       .pipe(finalize(() => this.btnLoading.set(false)))
       .subscribe({
         next: (category: Category) => {
           console.log(category);
-          this.notificationStore.addNotification({
-            type: NotificationTypes.SUCCESS,
-            message: 'Category successful created',
-          });
+          
           this.btnLoading.set(true);
           this.router.navigate(['../'], { relativeTo: this.route }).then();
         },

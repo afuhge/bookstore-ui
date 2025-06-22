@@ -13,8 +13,7 @@ import { LoginStore } from '../../core/stores/login.store';
 export class LoginComponent {
   ButtonType = ButtonType;
   readonly loginStore = inject(LoginStore);
-
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   public login() {
     this.loginStore.setLoginState(true);

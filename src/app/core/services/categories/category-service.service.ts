@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs';
 import {
@@ -12,9 +12,9 @@ import { CategoriesMapper } from './categories.mapper';
   providedIn: 'root',
 })
 export class CategoryService {
-  private CATEGORY_URL = 'http://localhost:4200/api/v1/categories';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private CATEGORY_URL = 'http://localhost:4200/api/v1/categories';
 
   getCategories() {
     return this.http.get<ICategoryPaginatedResponseDTO>(this.CATEGORY_URL).pipe(

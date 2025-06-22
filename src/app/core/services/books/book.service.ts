@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   IBookCreateRequestDTO,
@@ -12,8 +12,9 @@ import { BooksMapper } from './books.mapper';
   providedIn: 'root',
 })
 export class BookService {
+  private http = inject(HttpClient);
+
   private BOOK_URL = 'http://localhost:4200/api/v1/books';
-  constructor(private http: HttpClient) {}
 
   getBooks() {
     return this.http.get<IBookPaginatedResponseDTO>(this.BOOK_URL).pipe(
